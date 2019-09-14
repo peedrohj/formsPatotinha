@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import HasCreditCard from './components/HasCreditCard'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      step: "creditCard",
+      hasCreditCard: null
+    }
+  }
+
+  onClickHasCreditCard = hasCreditCard => {
+    let step;
+    if (hasCreditCard) {
+      step = "itWasRejected"
+    }
+    else {
+      step = "whyHasNot"
+    }
+    this.setState({
+      hasCreditCard,
+      step
+    })
+  }
+
+  render() {
+    return (
+      <div className="App">
+        {this.state.step === "creditCard" && <HasCreditCard onClick={this.onClickHasCreditCard} />}
+
+        {/* Fazer o component a partir daqui, placeholder por enquanto */}
+        {this.state.step === "itWasRejected" && <div><h1>Ja foi rejeitado a solicitar o cartao de credito?</h1></div>}
+        {this.state.step === "whyHasNot" && <div><h1>PQ?</h1></div>}
+      </div>
+    )
+  }
 }
 
-export default App;
+export default App
