@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import HasCreditCard from './components/HasCreditCard'
+import ItWasRejected from './components/ItWasRejected'
 
 export class App extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ export class App extends Component {
         {this.state.step === "creditCard" && <HasCreditCard onClick={this.onClickHasCreditCard} />}
 
         {/* Fazer o component a partir daqui, placeholder por enquanto */}
-        {this.state.step === "itWasRejected" && <div><h1>Ja foi rejeitado a solicitar o cartao de credito?</h1></div>}
+        {this.state.step === "itWasRejected" && <ItWasRejected/>}
         {this.state.step === "whyHasNot" && <div><h1>PQ?</h1></div>}
       </div>
     )
